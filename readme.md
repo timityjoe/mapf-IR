@@ -45,6 +45,7 @@ git clone --recursive https://github.com/Kei18/mapf-IR.git
 cd mapf-IR
 mkdir build
 cd build
+vcs import < mapf_repos.txt
 cmake ..
 make
 ```
