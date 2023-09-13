@@ -38,6 +38,7 @@ Please cite the following paper if you use the code in your published research:
 1000 agents in brc202d, planned by PIBT in ~~84sec~~ 1348ms.
 The gif shows a part of an MAPF plan.
 
+
 ## Building
 
 ```sh
@@ -48,6 +49,13 @@ cd build
 vcs import < mapf_repos.txt
 cmake ..
 make
+```
+
+## Visualizer replay (from mapf-IR root dir)
+```sh
+./mapf-visualizer/bin/mapf-visualizer ./mapf-visualizer/assets/random-32-32-20.map ./mapf-visualizer/assets/demo_random-32-32-20.txt
+./mapf-visualizer/bin/mapf-visualizer ./mapf-visualizer/assets/ost003d.map ./mapf-visualizer/assets/demo_ost003d.txt
+./mapf-visualizer/bin/mapf-visualizer ./mapf-visualizer/assets/tunnel.map ./mapf-visualizer/assets/demo_tunnel.txt
 ```
 
 ### for M1 CPU
