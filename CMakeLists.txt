@@ -3,10 +3,13 @@ project(mapf-refine CXX)
 
 add_subdirectory(./mapf)
 add_subdirectory(./third_party/googletest)
+# Mod by Tim
+add_subdirectory(./visualizer)
 
 add_executable(app app.cpp)
 target_compile_features(app PUBLIC cxx_std_17)
 target_link_libraries(app lib-mapf)
+
 
 # format
 add_custom_target(clang-format

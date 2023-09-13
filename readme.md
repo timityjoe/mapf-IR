@@ -46,7 +46,13 @@ git clone --recursive https://github.com/Kei18/mapf-IR.git
 cd mapf-IR
 mkdir build
 cd build
+make
+
 vcs import < mapf_repos.txt
+wget -O third_party/openFrameworks.tar.gz https://github.com/openframeworks/openFrameworks/releases/download/0.11.2/of_v0.11.2_linux64gcc6_release.tar.gz
+tar -xzvf third_party/openFrameworks.tar.gz -C third_party --strip-components=1 --one-top-level=openFrameworks
+sudo third_party/openFrameworks/scripts/linux/ubuntu/install_dependencies.sh
+sudo third_party/openFrameworks/scripts/linux/ubuntu/install_codecs.sh
 cmake ..
 make
 ```
