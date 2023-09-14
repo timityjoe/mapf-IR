@@ -44,16 +44,19 @@ The gif shows a part of an MAPF plan.
 ```sh
 git clone --recursive https://github.com/Kei18/mapf-IR.git
 cd mapf-IR
+vcs import < mapf_repos.txt
 mkdir build
 cd build
 make
 
-vcs import < mapf_repos.txt
 wget -O third_party/openFrameworks.tar.gz https://github.com/openframeworks/openFrameworks/releases/download/0.11.2/of_v0.11.2_linux64gcc6_release.tar.gz
 tar -xzvf third_party/openFrameworks.tar.gz -C third_party --strip-components=1 --one-top-level=openFrameworks
 sudo third_party/openFrameworks/scripts/linux/ubuntu/install_dependencies.sh
 sudo third_party/openFrameworks/scripts/linux/ubuntu/install_codecs.sh
 cmake ..
+make
+
+cd ../visualizer
 make
 ```
 
@@ -63,6 +66,10 @@ make
 ./mapf-visualizer/bin/mapf-visualizer ./mapf-visualizer/assets/ost003d.map ./mapf-visualizer/assets/demo_ost003d.txt
 ./mapf-visualizer/bin/mapf-visualizer ./mapf-visualizer/assets/tunnel.map ./mapf-visualizer/assets/demo_tunnel.txt
 ```
+Alternatively, run the stock map-IR visualizer from the /build directory
+/build must have 2 files:
+- results.txt
+- *.map file 
 
 ### for M1 CPU
 

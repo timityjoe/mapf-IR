@@ -19,6 +19,7 @@ include_directories(./include
 		../third_party/openFrameworks/libs/tess2/include
 		../third_party/openFrameworks/libs/utf8/include
 		../third_party/openFrameworks/libs/glm/include
-		../third_party/openFrameworks/libs/json/include)
+		../third_party/openFrameworks/libs/json/include
+		../third_party/openFrameworks/libs/kiss/include)
 target_compile_features(visualizer PUBLIC cxx_std_17)
 target_link_libraries(visualizer lib-mapf)
