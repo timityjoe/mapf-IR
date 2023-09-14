@@ -45,6 +45,3 @@ target_link_libraries(visualizer
     PkgConfig::gstreamer-app
     PkgConfig::gstreamer-video
     lib-mapf)
-
-
-
