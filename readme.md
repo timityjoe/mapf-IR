@@ -77,7 +77,61 @@ Alternatively, run the stock map-IR visualizer from the /build directory
 cmake -DCPU=M1 ..
 ```
 
+## Solver Options (-s)
+PIBT
+  -d --disable-dist-init        disable initialization of priorities using distance from starts to goals
+winPIBT
+  -w --window [INT]             window size, default: 5, no window: -1
+HCA
+  -d --disable-dist-init        disable initialization of priorities using distance from starts to goals
+WHCA
+  -w --window [INT]             window size
+  -d --disable-dist-init        disable initialization of priorities using distance from starts to goals
+RevisitPP
+  -d --disable-dist-init        disable initialization of priorities using distance from starts to goals
+PushAndSwap
+  -c --no-compress              no compressing solution
+  -d --disable-dist-init        disable initialization of priorities using distance from starts to goals
+CBS
+  (no option)
+ECBS
+  -w --sub-optimality [NUMBER]  sub-optimality >= 1
+ICBS
+  (no option)
+PIBT_COMPLETE
+  -x --comp-solver [SOLVER]     init solver: { PushAndSwap, ECBS, ICBS }, default: PushAndSwap
+  -X --option-comp-solver ["OPTION"]
+                                option for comp-solver
+IR
+  -l --log-every-iter           make log for every iteration
+  -t --timeout-refinement [INT] timeout for refinement
+  -x --init-solver [SOLVER]     init solver: { PIBT, HCA, WHCA, PIBT_COMPLETE, ECBS, winPIBT, RevisitPP }, default: PIBT_COMPLETE
+  -X --option-init-solver ["OPTION"]
+                                option for init-solver
+  -y --refine-solver [SOLVER]   refine solver: { CBS, CBS_USUAL, ICBS, ICBS_USUAL }, default: ICBS
+  -Y --option-refine-solver ["OPTION"]
+                                option for refine-solver
+  -n --max-iteration [INT]      max iteration
+  -S --sampling-num [INT]       number of sampling
+IR_SINGLE_PATHS
+  (no option)
+IR_FIX_AT_GOALS
+  (no option)
+IR_FOCUS_GOALS
+  (no option)
+IR_MDD
+  (no option)
+IR_BOTTLENECK
+  (no option)
+IR_HYBRID
+  (no option)
+
 ## Usage
+Help
+```sh
+./app -h
+```
+
 PIBT
 ```sh
 ./app -i ../instances/sample.txt -s PIBT -o result.txt -v
@@ -86,12 +140,26 @@ PIBT
 IR (the result will be saved in result.txt)
 ```sh
 ./app -i ../instances/random-32-32-20_70agents_1.txt -s IR_HYBRID -n 300 -t 100 -v
-./app -i ../instances/arena_300agents_1.txt -s IR_HYBRID -n 300 -t 100 -v                        (_1 to _25)
-./app -i ../instances/arena_300agents_25.txt -s IR_HYBRID -n 300 -t 100 -v                       (_1 to _25)
-./app -i ../instances/brc202d_1500agents_1.txt -s IR_HYBRID -n 300 -t 100 -v                     (_1 to _10)
-./app -i ../instances/lak307d_300agents_well-formed_1.txt -s IR_HYBRID -n 300 -t 100 -v          (_1 to _25)
-./app -i ../instances/lak503d_500agents_well-formed_1.txt -s IR_HYBRID -n 500 -t 100 -v          (_1 to _25)
-./app -i ../instances/ost000a_3000agents_1.txt -s IR_HYBRID -n 500 -t 100 -v                     (_1 to _10)
+
+
+./app -i ../instances/arena_300agents_1.txt -s IR_HYBRID -n 300 -t 100 -v                   (_1 to _25)	  115ms,
+./app -i ../instances/arena_300agents_25.txt -s ECBS -n 300 -t 100 -v                       (_1 to _25)	  953ms, makespan 78 (timestep 78sec)
+./app -i ../instances/arena_300agents_25.txt -s CBS -n 300 -t 100 -v                        (_1 to _25)	30152ms, (Seg fault)
+./app -i ../instances/arena_300agents_25.txt -s ICBS -n 300 -t 100 -v                       (_1 to _25)	30007ms, (Seg fault)
+./app -i ../instances/arena_300agents_25.txt -s PushAndSwap -n 300 -t 100 -v                (_1 to _25)	   65ms, makespan 1110 (timestep 1110sec)  (very slow...)
+./app -i ../instances/arena_300agents_25.txt -s RevisitPP -n 300 -t 100 -v                  (_1 to _25)      1489ms,  (Seg fault)
+./app -i ../instances/arena_300agents_25.txt -s WHCA -n 300 -t 100 -v                       (_1 to _25)        37ms, makespan 78 (timestep 78sec)
+./app -i ../instances/arena_300agents_25.txt -s HCA -n 300 -t 100 -v                        (_1 to _25)        70ms, makespan 78 (timestep 78sec)
+./app -i ../instances/arena_300agents_25.txt -s IR_FIX_AT_GOALS -n 300 -t 100 -v            (_1 to _25)       128ms, makespan 78 (timestep 78sec)
+
+
+./app -i ../instances/brc202d_1500agents_1.txt -s IR_HYBRID -n 300 -t 100 -v                (_1 to _10)
+./app -i ../instances/brc202d_1500agents_1.txt -s ECBS -n 300 -t 100 -v                     (_1 to _10)
+
+
+./app -i ../instances/lak307d_300agents_well-formed_1.txt -s IR_HYBRID -n 300 -t 100 -v     (_1 to _25)
+./app -i ../instances/lak503d_500agents_well-formed_1.txt -s IR_HYBRID -n 500 -t 100 -v     (_1 to _25)
+./app -i ../instances/ost000a_3000agents_1.txt -s IR_HYBRID -n 500 -t 100 -v                (_1 to _10)
 ```
 
 Replay, run the stock map-IR visualizer from the /build directory
