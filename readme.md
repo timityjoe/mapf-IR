@@ -86,6 +86,21 @@ PIBT
 IR (the result will be saved in result.txt)
 ```sh
 ./app -i ../instances/random-32-32-20_70agents_1.txt -s IR_HYBRID -n 300 -t 100 -v
+./app -i ../instances/arena_300agents_1.txt -s IR_HYBRID -n 300 -t 100 -v                        (_1 to _25)
+./app -i ../instances/arena_300agents_25.txt -s IR_HYBRID -n 300 -t 100 -v                       (_1 to _25)
+./app -i ../instances/brc202d_1500agents_1.txt -s IR_HYBRID -n 300 -t 100 -v                     (_1 to _10)
+./app -i ../instances/lak307d_300agents_well-formed_1.txt -s IR_HYBRID -n 300 -t 100 -v          (_1 to _25)
+./app -i ../instances/lak503d_500agents_well-formed_1.txt -s IR_HYBRID -n 500 -t 100 -v          (_1 to _25)
+./app -i ../instances/ost000a_3000agents_1.txt -s IR_HYBRID -n 500 -t 100 -v                     (_1 to _10)
+```
+
+Replay, run the stock map-IR visualizer from the /build directory
+/build must have 2 files:
+- results.txt
+- *.map file 
+```sh
+cd ../build
+../visualizer/bin/visualizer ../build/result.txt
 ```
 
 You can find details and explanations for all parameters with:
